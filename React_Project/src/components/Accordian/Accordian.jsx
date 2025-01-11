@@ -7,10 +7,6 @@ const Accordian = () => {
   const [selectedIdArr, setSelectedIdArr] = useState([]);
   const [multiSelect, setMultiSelect] = useState(false);
 
-  useEffect(() => {
-    console.table(selectedId, selectedIdArr, multiSelect);
-  }, [selectedId, selectedIdArr, multiSelect]);
-
   const onClickHandler = (id) => {
     if (multiSelect) {
       let copyArr = [...selectedIdArr];
