@@ -13,11 +13,13 @@ const Accordian = () => {
 
   const onClickHandler = (id) => {
     if (multiSelect) {
-      if (selectedIdArr.includes(id)) {
-        console.log("included");
-      } else {
-        selectedIdArr((prev) => [...prev, id]);
-      }
+      let copyArr = [...selectedIdArr];
+      //checking  if the value alredy exist
+      const index = copyArr.indexOf(id);
+
+      if (index == -1) copyArr.push(id);
+      else copyArr.splice(index, 1);
+      setSelectedIdArr(copyArr);
     } else {
       if (id == selectedId) {
         setSelectedId(null);
@@ -48,7 +50,8 @@ const Accordian = () => {
                 <div className="flex justify-between gap-2">
                   <div className="flex flex-col ">
                     <span>{items.question}</span>
-                    {selectedId == items.id ? (
+                    {selectedId == items.id ||
+                    selectedIdArr.indexOf(items.id) !== -1 ? (
                       <span>{items.answer}</span>
                     ) : (
                       <span></span>
